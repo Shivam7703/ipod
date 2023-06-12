@@ -4,6 +4,14 @@ import songs from './song';
 import img from './img';
 
 const Buttons = () => {
+  const [a, setA] = useState(false);
+  const [b, setB] = useState(false);
+  const [c, setC] = useState(false);
+  const [v, setV] = useState(false);
+  const [d, setD] = useState(false);
+  const [p, setP] = useState('0');
+
+
   const song1 = new Audio(songs.audio1);
   const song2 = new Audio(songs.audio2);
   const song3 = new Audio(songs.audio3);
@@ -21,13 +29,8 @@ const Buttons = () => {
     index: 4,
   };
 
-  const [a, setA] = useState(false);
-  const [b, setB] = useState(false);
-  const [c, setC] = useState(false);
-  const [v, setV] = useState(false);
-  const [d, setD] = useState(false);
 
-  const [p, setP] = useState('0');
+
 
   useEffect(() => {
     const rotat = () => {
@@ -40,8 +43,7 @@ const Buttons = () => {
       const childElement = document.getElementById('plays');
       childElement.style.pointerEvents = 'auto';
 
-      activeRegion.bind(childElement, 'rotate', function (event) {
-        // Perform Operations
+      activeRegion.bind(childElement, 'rotate', async function (event) {
         if (
           (event.detail.angle < 90 && event.detail.angle > 45) ||
           (event.detail.angle < 215 && event.detail.angle > 180)
@@ -78,116 +80,82 @@ const Buttons = () => {
     rotat();
   }, []);
 
-  const view = () => {
+  const view = async () => {
     setV(!v);
-    return;
   };
 
-  const select = () => {
-    if (c === true && v === false) {
+  const select = async () => {
+    if (c && !v) {
       document.getElementById('disp').style.display = 'none';
-     setP('1');
+      setP('1');
       setV(true);
-      console.log(p);
-      pla(playlist.index);
       setC(false);
-      return;
-    } else if (a === true && v === false) {
+      await pla(playlist.index);
+    } else if (a && !v) {
       document.getElementById('disp').style.display = 'none';
       document.getElementById('r').style.backgroundColor = 'red';
       setA(false);
       setV(true);
-    } else if (b === true && v === false) {
+    } else if (b && !v) {
       document.getElementById('disp').style.display = 'none';
-      walchange(wal.wali);
-     return setD(true) , setV(true), setB(false);
-    } else {
-      return;
+      await walchange(wal.wali);
+      setD(true);
+      setV(true);
+      setB(false);
     }
   };
 
-
-
-
-
-  const pla = (songd) => {
-    if (c === true) {
+  const pla = async (songd) => {
+    if (c) {
       if (p === '1') {
-        // Pause the current song
-       return playlist.son[playlist.index].pause();
+        playlist.son[playlist.index].pause();
       }
-  
-      // Play the selected song
+
       playlist.son[songd].play();
       document.getElementById('r').style.backgroundImage = `url(${playlist.cover[songd]})`;
       playlist.index = songd;
       setP('1');
-      return;
     }
   };
 
-
-
-
-
-
-
-
-  // const pla = (songd) => {
-  //   if (p === '1' && c === true) {
-  //     console.log(p);
-  //     playlist.son[songd].pause();
-  //     setP('0');
-  //   } else if (p === '0' && c === true) {
-  //     console.log(p);
-  //     playlist.son[songd].play();
-  //     document.getElementById('r').style.backgroundImage = `url(${playlist.cover[songd]})`;
-  //     setP('1');
-  //   } else {
-  //     return [];
-  //   }
-  // };
-
-  const walchange = (i) => {
-  return  document.getElementById('r').style.backgroundImage = `url(${wal.pic[i]})`;
+  const walchange = async (i) => {
+    document.getElementById('r').style.backgroundImage = `url(${wal.pic[i]})`;
   };
 
-  const right = () => {
-    if (c === true && v === true) {
+  const right = async () => {
+    if (c && v) {
       if (playlist.index === playlist.son.length - 1) {
         playlist.index = 0;
       } else {
         playlist.index += 1;
       }
-      pla(playlist.index);
-    } else if (b === true && d === true) {
-      console.log(d);
+      await pla(playlist.index);
+    } else if (b && d && v) {
       if (wal.wali === 3) {
         wal.wali = 0;
       } else {
         wal.wali += 1;
       }
-      walchange(wal.wali);
+      await walchange(wal.wali);
     }
   };
 
-  const left = () => {
-    if (c === true && v === true) {
+  const left = async () => {
+    if (c && v) {
       if (playlist.index === 0) {
         playlist.index = 4;
       } else {
         playlist.index -= 1;
       }
-      pla(playlist.index);
+      await pla(playlist.index);
       document.getElementById('disp').style.display = 'none';
-    } else if (b === true && d === true) {
+    } else if (b && d && v) {
       if (wal.wali === 0) {
-        console.log('disp');
         wal.wali = 3;
       } else {
         wal.wali -= 1;
       }
-      walchange(wal.wali);
+      await walchange(wal.wali);
     }
   };
 
@@ -249,6 +217,9 @@ const Buttons = () => {
     </div>
   );
 };
+
+
+
 
 const style = {
   wallpaper: {
