@@ -1,0 +1,83 @@
+*{padding: 0;
+  margin: 0;
+  text-align: center;
+}
+.body {
+  height: 100vh;
+  background-image: url(https://image.freepik.com/free-vector/abstract-wave-lines-movement-purple-lights-effect-background_1302-25592.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.body2{
+  border-radius: 70px;
+  box-shadow: -4px 15px 25px 20px;
+  background: linear-gradient(90deg, rgb(100, 100, 100),rgb(28, 28, 28),black);
+  width: 320px;
+  align-items: center;
+  height: 520px;
+  padding:2px 5px;
+  border: 2px solid rgb(251, 253, 253);
+}
+.outer{
+  margin:14px 5px;
+  width: 300px;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid rgb(6, 6, 6);
+  border-radius: 0px 0px 70px 70px;
+  background: radial-gradient( rgb(244, 4, 4),rgb(7, 7, 7));} 
+
+
+.middle{
+  width: 250px;
+  border-radius: 50%;
+  height: 220px;
+  background: radial-gradient( red,yellow);
+  box-shadow:-2px 0px 5px 5px;
+    display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+.act_icon{
+  height: 45px;
+  margin: 10px;
+}
+.act_icon:hover{
+  border-radius: 50%;
+border: 2px solid white;
+box-shadow:0px 0px 5px 3px greenyellow;
+
+}
+.inner{
+
+  border-radius: 50%;
+  border: 2px solid rgb(2, 0, 13);
+  height: 100px;
+}
+h2{
+  font-size: 25px;
+  margin: 10px 100px 13px;
+}
+h2:hover{
+  transform: scale(1.3);
+text-shadow:0px 2px rgb(11, 243, 243);
+cursor: pointer;
+}
