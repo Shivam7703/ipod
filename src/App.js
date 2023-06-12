@@ -9,8 +9,8 @@ function App() {
     <h3>For changing the selection in menu bar please click and drag in clock wise or anti clockwise.
       <br/>
       ........press on mouse icon to select the options in menu bar.<br/>
-       .......press left or right button to change songs or wallpaper.<br/>
-       ....press MENU button if menu bar is invisible.</h3></div>
+       .......first drag one more time abov right button's icon then press left or right button to change songs or wallpaper.<br/>
+       .....first drag one more time in the bottom of right button's icon then press MENU button if menu bar is invisible.</h3></div>
   
     <Buttons/>
    
